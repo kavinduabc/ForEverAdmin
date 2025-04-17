@@ -2,7 +2,12 @@ import React from 'react'
 
 const Admin = () => {
   return (
-    <div className='bg-red-600'>Admin</div>
+    <div className='w-full hiscreen flex'>
+        <div className='w-[200px] h-full bg-blue-800 '>
+            
+        </div>
+
+    </div>
   )
 }
 
