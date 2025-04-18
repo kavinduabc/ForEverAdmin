@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { useState } from 'react'
+import { backendUrl } from '../App';
 
 const Login = () => {
 
@@ -9,7 +11,8 @@ const Login = () => {
         try {
 
             e.preventDefault();
-            
+            const res = await axios.post(backendUrl + '/api/user/login',{email,password})
+            console.log(res);
             
         } catch (error) {
             
