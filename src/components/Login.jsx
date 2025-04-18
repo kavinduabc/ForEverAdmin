@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { backendUrl } from '../App';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -8,15 +9,30 @@ const Login = () => {
     const [password,setPassword] = useState("");
 
     const onSubmitHandler = async (e) =>{
-        try {
+       e.preventDefault()
+       
+       try {
+        const res = await axios.post(backendUrl + '/api/user/login', { email, password });
 
-            e.preventDefault();
-            const res = await axios.post(backendUrl + '/api/user/login',{email,password})
-            console.log(res);
-            
-        } catch (error) {
-            
+        console.log(res)
+        toast.success("Admin Login Successfull")
+
+        const user =res.data.user;
+
+        localStorage.setItem("token",res.data.token)
+
+        if(user.role === "admin")
+        {
+            Navigate("/")
         }
+        else{
+            toast.error(res.data.message)
+        }
+        
+       } catch (error) {
+        
+       }
+
     }
   return (
     <div className='min-h-screen flex items-center justify-center w-full '>
