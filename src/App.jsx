@@ -9,6 +9,8 @@ import Order from './pages/Order'
 import List from './pages/List'
 import Login from './components/Login'
 
+export const backendUrl = import.meta.env.BACKEND_URL;
+
 function App() {
   
   const [token,setToken] = useState("")
