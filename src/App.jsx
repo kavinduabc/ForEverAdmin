@@ -7,6 +7,8 @@ import Add from './pages/Add'
 import Order from './pages/Order'
 import List from './pages/List'
 import Login from './components/Login'
+import { ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -19,7 +21,9 @@ function App() {
   },[token])
 
   return (
+    
     <div className='bg-gray-50 min-h-screen'>
+      <ToastContainer position='top-right' autoClose={3000} />
     {
       token === "" ? (
         <Login setToken={setToken} />
