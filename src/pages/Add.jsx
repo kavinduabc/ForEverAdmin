@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../assets/adminAssets/assets'
 
 const Add = () => {
+
+  const[image,setImage]=useState('')
+  const[name,setName]=useState("")
+  const[discription,setDiscription]=useState('')
+  const[catrgory,setCategory]=useState('')
+  const[subCategory,setSubCategory]=useState('')
+  const[price,setPrice]=useState('')
+
+  const onSubmitProduct = (e)=>{
+
+    
+
+  }
   return (
     <form className='flex flex-col w-full items-start gap-3'>
       <div>
