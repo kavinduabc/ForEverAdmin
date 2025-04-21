@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/adminAssets/assets'
+import { backendUrl } from '../App'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 const Add = () => {
 
+  const[key,setKey]=useState('')
   const[image,setImage]=useState('')
   const[name,setName]=useState("")
   const[discription,setDiscription]=useState('')
@@ -10,20 +15,54 @@ const Add = () => {
   const[subCategory,setSubCategory]=useState('')
   const[price,setPrice]=useState('')
 
-  const onSubmitProduct = (e)=>{
+  const navigate = useNavigate()
 
-    
+  async function addProduct(){
+    console.log(productKey,productName,productDiscription,productCategory,productSubcategory,productPrice);
 
+    const token = localStorage.getItem("token");
+    if(!token)
+    {
+      toast.error("you are not authorized to perform this task")
+        return;
+      
+    }
+    try {
+      const product = await axios.post( backendUrl + '/api/product',{
+        key : productKey,
+        name : productName,
+        discription : productDiscription,
+        category : productCategory,
+        subCategory : productSubcategory,
+        price : productPrice
+      },
+    {
+      headers : {
+        Authorization: `Bearer ${token}`,
+        "Content-Type":"application/json"
+      },
+    });
+    toast.success(product.data.message);
+    navigate("/list")
+      
+    } catch (error) {
+      toast.error(error.response?.data?.error || "Something went wrong")
+    }
   }
+
+   
+    
+     
   return (
-    <form className='flex flex-col w-full items-start gap-3'>
+    <form onClick={addProduct} className='flex flex-col w-full items-start gap-3'>
       <div>
         <p className='mb-2'>Upload Image</p>
 
         <div className='flex gap-2'>
           <label htmlFor='image1'>
             <img className='w-20' src={assets.upload_area} alt="upload" />
-            <input type="file" id='image1' hidden />
+            <input onChange={(e)=> setImage(e.target.value)}
+            value={image} type="file" id='image1' hidden />
           </label>
 
           <label htmlFor='image2'>
@@ -42,14 +81,18 @@ const Add = () => {
           </label>
         </div>
       </div>
-
+      
+      <div className='w-full'>
+        <p className='mb-2'>Product Key</p>
+        <input onChange={(e) =>setKey(e.target.value)} value={key} className='w-full max-w-[500px] px-3 py-2 border-1' type="text" placeholder='product key' required />
+      </div>
       <div className='w-full'>
         <p className='mb-2'>Product name</p>
-        <input className='w-full max-w-[500px] px-3 py-2 border-1' type="text" placeholder='product name' required />
+        <input onChange={(e) =>setName(e.target.value)} value={name}  className='w-full max-w-[500px] px-3 py-2 border-1' type="text" placeholder='product name' required />
       </div>
       <div className='w-full'>
         <p className='mb-2'>Product Discription</p>
-        <textarea className='w-full max-w-[500px] px-3 py-2 border-1' type="text" placeholder='product discription' required />
+        <textarea onChange={(e) =>setDiscription(e.target.value)} value={discription}  className='w-full max-w-[500px] px-3 py-2 border-1' type="text" placeholder='product discription' required />
       </div>
       <div className='flex flex-col sm:flex-row gap-2 w-full sm:gap-8'>
         <div>
@@ -71,7 +114,7 @@ const Add = () => {
 
         <div>
           <p className='mb-2'>Product Price</p>
-          <input className='w-full px-3 py-2 sm:w-[120px]' type="Number" placeholder='price' />
+          <input onChange={(e) =>setPrice(e.target.value)} value={price}  className='w-full px-3 py-2 sm:w-[120px]' type="Number" placeholder='price' />
         </div>
       </div>
 
