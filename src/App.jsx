@@ -9,6 +9,7 @@ import List from './pages/List'
 import Login from './components/Login'
 import { ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import User from './pages/User'
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/add" element={<Add token={token} />} />
                 <Route path="/list" element={<List token={token}/>} />
                 <Route path="/orders" element={<Order token={token} />} />
+                <Route path="/users" element={<User token={token} />} />
                 <Route path="*" element={<Navigate to="/list" />} />
               </Routes>
             </div>
