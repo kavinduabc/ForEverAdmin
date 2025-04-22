@@ -31,21 +31,24 @@ const List = () => {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Key</th>
               <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Action</th>
+              <th>Imahe</th>
+              <th>Category</th>
+              <th>Sub Category</th>
+              <th>Price</th>
             </tr>
           </thead>
           <tbody>
             {product.length > 0 ? (
               product.map((product) => (
                 <tr key={product.id}>
-                  <td>{product.id}</td>
+                  <td>{product.key}</td>
                   <td>{product.name}</td>
-                  <td>{product.email}</td>
-                  <td>{product.role}</td>
+                  <td>{product.image}</td>
+                  <td>{product.category}</td>
+                  <td>{product.subCategory }</td>
+                  <td>{product.price}</td>
                   <td>Action</td>
                 </tr>
               ))
