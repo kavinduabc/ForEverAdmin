@@ -25,31 +25,38 @@ const List = () => {
     }
   }, [productLoaded]);
 
+  
+
   return (
-    <div>
+    <div className='w-full h-full  relative flex flex-col items-center'> 
       <div>
-        <table>
+        <table className='w-full max-w-full text-left border-collapse bg-white shadow-2xl rounded'>
           <thead>
-            <tr>
-              <th>Key</th>
-              <th>Name</th>
-              <th>Imahe</th>
-              <th>Category</th>
-              <th>Sub Category</th>
-              <th>Price</th>
+            <tr className='bg-gray-200 text-gray-700'>
+              <th className='px-4 py-2'>Key</th>
+              <th className='px-4 py-2'>Name</th>
+              <th className='px-4 py-2'>Category</th>
+              <th className='px-4 py-2'>Sub Category</th>
+              <th className='px-4 py-2'>Price</th>
+              <th className='px-4 py-2'>Action</th>
             </tr>
           </thead>
           <tbody>
             {product.length > 0 ? (
               product.map((product) => (
                 <tr key={product.id}>
-                  <td>{product.key}</td>
-                  <td>{product.name}</td>
-                  <td>{product.image}</td>
-                  <td>{product.category}</td>
-                  <td>{product.subCategory }</td>
-                  <td>{product.price}</td>
-                  <td>Action</td>
+                  <td className='px-4 py-2'>{product.key}</td>
+                  <td className='px-4 py-2'>{product.name}</td>
+                  
+                  <td className='px-4 py-2'>{product.category}</td>
+                  <td className='px-4 py-2'>{product.subCategory }</td>
+                  <td className='px-4 py-2'>{product.price}</td>
+                  <td className='px-4 py-2'>
+                    <div className='flex gap-1.5'>
+                     <button className='bg-black text-white w-[80px]'>Update</button>
+                     <button className='bg-white text-black w-[80px]'>Delete</button>
+                    </div>
+                  </td>
                 </tr>
               ))
             ) : (
