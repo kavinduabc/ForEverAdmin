@@ -28,46 +28,46 @@ const List = () => {
   
 
   return (
-    <div className='w-full h-full  relative flex flex-col items-center'> 
-      <div>
-        <table className='w-full max-w-full text-left border-collapse bg-white shadow-2xl rounded'>
-          <thead>
-            <tr className='bg-gray-200 text-gray-700'>
-              <th className='px-4 py-2'>Key</th>
-              <th className='px-4 py-2'>Name</th>
-              <th className='px-4 py-2'>Category</th>
-              <th className='px-4 py-2'>Sub Category</th>
-              <th className='px-4 py-2'>Price</th>
-              <th className='px-4 py-2'>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {product.length > 0 ? (
-              product.map((product) => (
-                <tr key={product.id}>
-                  <td className='px-4 py-2'>{product.key}</td>
-                  <td className='px-4 py-2'>{product.name}</td>
-                  
-                  <td className='px-4 py-2'>{product.category}</td>
-                  <td className='px-4 py-2'>{product.subCategory }</td>
-                  <td className='px-4 py-2'>{product.price}</td>
-                  <td className='px-4 py-2'>
-                    <div className='flex gap-1.5'>
-                     <button className='bg-black text-white w-[80px]'>Update</button>
-                     <button className='bg-white text-black w-[80px]'>Delete</button>
-                    </div>
+    <div className="p-5">
+    <div className="overflow-x-auto">
+      <table className="min-w-full bg-white border border-gray-200 shadow-2xl rounded">
+        <thead className="bg-gray-100">
+          <tr className="text-gray-700">
+            <th className="py-3 px-6 border-b text-left text-sm font-semibold">Key</th>
+            <th className="py-3 px-6 border-b text-left text-sm font-semibold">Name</th>
+            <th className="py-3 px-6 border-b text-left text-sm font-semibold">Category</th>
+            <th className="py-3 px-6 border-b text-left text-sm font-semibold">Sub Category</th>
+            <th className="py-3 px-6 border-b text-left text-sm font-semibold">Price</th>
+            <th className="py-3 px-6 border-b text-left text-sm font-semibold">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            product.length > 0 ? (
+              product.map((item, index) => (
+                <tr className="hover:bg-gray-50" key={item.id || index}>
+                  <td className="py-3 px-6 border-b">{item.key}</td>
+                  <td className="py-3 px-6 border-b">{item.name}</td>
+                  <td className="py-3 px-6 border-b">{item.category}</td>
+                  <td className="py-3 px-6 border-b">{item.subCategory}</td>
+                  <td className="py-3 px-6 border-b">{item.price}</td>
+                  <td className="py-3 px-6 border-b space-x-2">
+                    <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Update</button>
+                    <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Delete</button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="5">No Product Available</td>
+                <td colSpan="6" className="text-center py-4">No Product Available</td>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+            )
+          }
+        </tbody>
+      </table>
     </div>
+  </div>
+  
   );
 };
 
