@@ -8,7 +8,10 @@ import axios from 'axios'
 
 const Add = () => {
   const [key, setKey] = useState('')
-  const [image, setImage] = useState('')
+  const [image1, setImage1] = useState('')
+  const [image2, setImage2] = useState('')
+  const [image3, setImage3] = useState('')
+  const [image4, setImage4] = useState('')
   const [name, setName] = useState('')
   const [discription, setDiscription] = useState('')
   const [catrgory, setCategory] = useState('')
@@ -74,8 +77,8 @@ const Add = () => {
           <label htmlFor="image1">
             <img className="w-20" src={assets.upload_area} alt="upload" />
             <input
-              onChange={(e) => setImage(e.target.value)}
-              value={image}
+              onChange={(e) => setImage1(e.target.value)}
+              value={image1}
               type="file"
               id="image1"
               hidden
@@ -84,17 +87,23 @@ const Add = () => {
 
           <label htmlFor="image2">
             <img className="w-20" src={assets.upload_area} alt="upload" />
-            <input type="file" id="image2" hidden />
+            <input onChange={(e)=>setImage2(e.target.value)}
+            value={image2} 
+            type="file" id="image2" hidden />
           </label>
 
           <label htmlFor="image3">
             <img className="w-20" src={assets.upload_area} alt="upload" />
-            <input type="file" id="image3" hidden />
+            <input onChange={(e)=>setImage3(e.target.value)}
+            value={image3}
+             type="file" id="image3" hidden />
           </label>
 
           <label htmlFor="image4">
             <img className="w-20" src={assets.upload_area} alt="upload" />
-            <input type="file" id="image4" hidden />
+            <input onChange={(e)=>setImage4(e.target.value)} 
+            value={image4}
+            type="file" id="image4" hidden />
           </label>
         </div>
       </div>
